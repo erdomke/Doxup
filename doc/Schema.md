@@ -1,0 +1,66 @@
+- Doxygen example: https://github.com/michaeljones/breathe/blob/master/tests/data/arange.xml
+  - https://github.com/doxygen/doxygen/blob/master/testing/066/class_class1.xml
+- Swagger example: https://editor.swagger.io/
+- Man page?
+- OData?
+
+```xml
+<topic />
+```
+
+- index
+  - @version, `string`
+  - license
+  - title
+- topic
+  - @version, `string`
+  - @id, `string`
+  - title
+  - summary
+  - `blocks`
+- definition:
+  - @kind, `string`, Class, enum, ...
+  - @version, `string`
+  - @id, `string`
+  - @lang, `string` - language: json, xml, cs, cpp, ...
+  - license
+  - title
+  - summary
+  - member
+    - @kind, `string` - Method, property, field, constructor, destructor ...
+    - @location, `string` - attribute, element, ...
+    - @id, `string`
+    - @access, `enum[public|private|internal|protected]`
+    - @readwrite, `enum[read|write|read-write]`
+    - @static, `boolean`
+    - @const, `boolean`
+    - @explicit, `boolean` 
+    - @inline, `boolean` 
+    - @virt, `boolean`
+    - title, `inlines`, [1]
+    - defaultValue
+    - param, `blocks|inlines`, [0,n]
+      - @name, `string`
+      - @cref, `string`
+      - @location, `string` - attribute, element, query, url, header, ...
+      - @optional, `boolean`
+      - @defaultValue, `string`
+      - @params, `boolean` - collects the values of all subsequent arguments
+      - @extension, `boolean`
+      - @direction, `enum[in|out|both]`
+      - attribute (see below)
+    - returns, `blocks|inlines`, [0,n] - HTTP requests, TypeScript, etc. could have multiple return types based on the input
+      - @code, `integer` - http status code, process exit code
+      - @cref
+    - exception, `blocks|inlines`, [0,n]
+      - @code, `integer` - http status code, process exit code
+      - @cref
+    - typeparam
+      - @name
+    - attribute
+      - @cref
+    - location
+      - @file
+      - @line
+      - @column
+    - compatibility
