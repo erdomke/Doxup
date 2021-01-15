@@ -4,13 +4,13 @@ using System.Diagnostics;
 using System.Text;
 using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    class TypeReference : List<IElement>, ISerializable
+    class TypeReference : List<IVisual>, ISerializable
     {
         public TypeReference() : base() { }
-        public TypeReference(IEnumerable<IElement> elements) : base(elements) { }
+        public TypeReference(IEnumerable<IVisual> elements) : base(elements) { }
 
         private string DebuggerDisplay => TextRun.RenderText(this);
 

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
     [DebuggerDisplay("{Name}")]
     struct Language : IEquatable<Language>
@@ -11,19 +11,19 @@ namespace Nudox.Model
         
         public Language(string name)
         {
-            switch (name.ToUpperInvariant())
+            switch (name?.TrimStart('.').ToUpperInvariant() ?? "")
             {
                 case "C#":
                 case "CS":
                 case "CSHARP":
-                    Name = "cs";
+                    Name = "csharp";
                     break;
                 case "C++":
                 case "CPP":
                     Name = "cpp";
                     break;
                 default:
-                    Name = name.ToLowerInvariant();
+                    Name = name?.TrimStart('.').ToLowerInvariant();
                     break;
             }
         }
@@ -56,6 +56,6 @@ namespace Nudox.Model
         }
 
         public static Language Cpp { get; } = new Language("cpp");
-        public static Language CSharp { get; } = new Language("cs");
+        public static Language CSharp { get; } = new Language("csharp");
     }
 }

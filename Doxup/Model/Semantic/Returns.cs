@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Text;
 using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    class Returns : IContainerElement
+    class Returns : IVisualContainer
     {
-        public List<IElement> Children { get; } = new List<IElement>();
+        public List<IVisual> Children { get; } = new List<IVisual>();
         public int? Code { get; set; }
         public TypeReference Type { get; } = new TypeReference();
 

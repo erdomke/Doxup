@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
     class Project
     {
+        public List<Page> Pages { get; } = new List<Page>();
         public List<CompoundDefinition> Definitions { get; } = new List<CompoundDefinition>();
     }
 }

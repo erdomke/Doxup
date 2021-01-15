@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nudox\Doxup.csproj" />
+    <ProjectReference Include="..\Doxup\Doxup.csproj" />
   </ItemGroup>
 
 </Project>

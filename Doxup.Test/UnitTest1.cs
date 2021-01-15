@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Nudox.Test
+namespace Doxup.Test
 {
     [TestClass]
     public class UnitTest1

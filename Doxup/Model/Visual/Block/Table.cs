@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
-    class Table : IElement
+    class Table : IBlock
     {
         public bool DefinitionList { get; set; }
         public Row Header { get; set; }

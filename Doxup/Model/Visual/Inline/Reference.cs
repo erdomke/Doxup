@@ -4,16 +4,14 @@ using System.Diagnostics;
 using System.Text;
 using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    class Reference : IElement
+    class Reference : IInline
     {
         public string Id { get; set; }
         public string Kind { get; set; }
         public string Text { get; set; }
-
-        public List<IElement> Children => throw new NotImplementedException();
 
         private string DebuggerDisplay => Text ?? Id;
 

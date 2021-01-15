@@ -2,27 +2,38 @@
 using System.Diagnostics;
 using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
-    /* TODO:
-     * - Inheritance
-     * - Fix explicity interface imlementations
-     * - <remarks>
-     * - <exceptions>
-     */
-
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     class CompoundDefinition : ISerializable
     {
         public AccessModifier Access { get; set; }
         public string Namespace { get; set; }
+        /*
+ <xsd:enumeration value="class" />
+<xsd:enumeration value="struct" />
+<xsd:enumeration value="union" />
+<xsd:enumeration value="interface" />
+<xsd:enumeration value="protocol" />
+<xsd:enumeration value="category" />
+<xsd:enumeration value="exception" />
+<xsd:enumeration value="service" />
+<xsd:enumeration value="singleton" />
+<xsd:enumeration value="module" />
+<xsd:enumeration value="type" />
+<xsd:enumeration value="group" />
+<xsd:enumeration value="page" />
+<xsd:enumeration value="example" />
+<xsd:enumeration value="dir" />
+         */
         public string Kind { get; set; }
         public string Id { get; set; }
         public Language Language { get; set; }
-        public List<IElement> Title { get; } = new List<IElement>();
-        public List<IElement> Summary { get; } = new List<IElement>();
-        public List<IElement> Documentation { get; } = new List<IElement>();
+        public List<IVisual> Title { get; } = new List<IVisual>();
+        public List<IVisual> Summary { get; } = new List<IVisual>();
+        public List<IVisual> Documentation { get; } = new List<IVisual>();
         public List<MemberDefinition> Members { get; } = new List<MemberDefinition>();
+        public List<Inherits> Inherits { get; } = new List<Inherits>();
         public SourceLocation SourceLocation { get; set; }
 
         private string DebuggerDisplay => $"{Access} {TextRun.RenderText(Title)}";
@@ -46,13 +57,13 @@ namespace Nudox.Model
                 child.WriteTo(writer);
             writer.WriteEndElement();
 
-            var summary = Summary;
-            if (summary.Count == 1 && summary[0] is Paragraph summaryParagraph)
-                summary = summaryParagraph.Children;
-            if (summary.Count > 0)
+            foreach (var inherits in Inherits)
+                inherits.WriteTo(writer);
+
+            if (Summary.Count > 0)
             {
                 writer.WriteStartElement("summary");
-                foreach (var child in summary)
+                foreach (var child in Summary)
                     child.WriteTo(writer);
                 writer.WriteEndElement();
             }

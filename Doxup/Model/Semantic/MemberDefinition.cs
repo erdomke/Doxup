@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     class MemberDefinition : ISerializable
@@ -13,10 +13,11 @@ namespace Nudox.Model
         public string Kind { get; set; }
         public string Location { get; set; }
         public ReadWrite ReadWrite { get; set; }
+        public List<IVisual> InitialValue { get; } = new List<IVisual>();
 
-        public List<IElement> Title { get; } = new List<IElement>();
-        public List<IElement> Summary { get; } = new List<IElement>();
-        public List<IElement> Documentation { get; } = new List<IElement>();
+        public List<IVisual> Title { get; } = new List<IVisual>();
+        public List<IVisual> Summary { get; } = new List<IVisual>();
+        public List<IVisual> Documentation { get; } = new List<IVisual>();
         public List<Parameter> Parameters { get; } = new List<Parameter>();
         public SourceLocation SourceLocation { get; set; }
 
@@ -43,18 +44,22 @@ namespace Nudox.Model
                 child.WriteTo(writer);
             writer.WriteEndElement();
 
-            var summary = Summary;
-            if (summary.Count == 1 && summary[0] is Paragraph summaryParagraph)
-                summary = summaryParagraph.Children;
-            if (summary.Count > 0)
+            if (Summary.Count > 0)
             {
                 writer.WriteStartElement("summary");
-                foreach (var child in summary)
+                foreach (var child in Summary)
                     child.WriteTo(writer);
                 writer.WriteEndElement();
             }
             foreach (var child in Parameters)
                 child.WriteTo(writer);
+            if (InitialValue.Count > 0)
+            {
+                writer.WriteStartElement("initial");
+                foreach (var child in InitialValue)
+                    child.WriteTo(writer);
+                writer.WriteEndElement();
+            }
             foreach (var child in Documentation)
                 child.WriteTo(writer);
             SourceLocation?.WriteTo(writer);

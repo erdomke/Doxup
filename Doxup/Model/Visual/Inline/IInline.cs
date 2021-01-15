@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Xml;
 
 namespace Doxup.Model
 {
-    interface ISerializable
+    interface IInline : IVisual
     {
-        void WriteTo(XmlWriter writer);
     }
 }

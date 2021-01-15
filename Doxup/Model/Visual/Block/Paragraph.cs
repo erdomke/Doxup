@@ -2,29 +2,29 @@
 using System.Linq;
 using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
-    class Paragraph : IContainerElement
+    class Paragraph : IVisualContainer, IBlock
     {
-        public List<IElement> Children { get; }
+        public List<IVisual> Children { get; }
 
         public Paragraph()
         {
-            Children = new List<IElement>();
+            Children = new List<IVisual>();
         }
-        public Paragraph(params IElement[] elements)
+        public Paragraph(params IVisual[] elements)
         {
             Children = elements.ToList();
         }
 
-        public Paragraph(IEnumerable<IElement> elements)
+        public Paragraph(IEnumerable<IVisual> elements)
         {
             Children = elements.ToList();
         }
 
         public void WriteTo(XmlWriter writer)
         {
-            writer.WriteStartElement("para");
+            writer.WriteStartElement("p");
             foreach (var child in Children)
                 child.WriteTo(writer);
             writer.WriteEndElement();

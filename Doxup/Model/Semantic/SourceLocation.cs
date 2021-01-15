@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
     class SourceLocation : ISerializable
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
     enum AccessModifier
     {

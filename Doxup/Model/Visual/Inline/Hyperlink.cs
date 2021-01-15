@@ -2,14 +2,15 @@
 using System.Linq;
 using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
-    internal class Hyperlink : IContainerElement
+    internal class Hyperlink : IVisualContainer, IInline
     {
+        public string Title { get; set; }
         public string Href { get; }
-        public List<IElement> Children { get; }
+        public List<IVisual> Children { get; }
 
-        public Hyperlink(string href, IEnumerable<IElement> children)
+        public Hyperlink(string href, IEnumerable<IVisual> children)
         {
             Href = href;
             Children = children.ToList();

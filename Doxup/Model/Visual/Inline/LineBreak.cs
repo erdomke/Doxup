@@ -1,8 +1,8 @@
 ﻿using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
-    class LineBreak : IElement
+    class LineBreak : IInline
     {
         public void WriteTo(XmlWriter writer)
         {

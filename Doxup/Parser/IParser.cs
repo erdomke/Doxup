@@ -1,9 +1,7 @@
-﻿using Nudox.Model;
-using System;
+﻿using Doxup.Model;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Nudox.Parser
+namespace Doxup.Parser
 {
     interface IParser
     {

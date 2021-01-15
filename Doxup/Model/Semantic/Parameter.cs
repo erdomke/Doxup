@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Xml;
 
-namespace Nudox.Model
+namespace Doxup.Model
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     class Parameter : ISerializable
@@ -12,7 +12,7 @@ namespace Nudox.Model
         public string Name { get; set; }
         public TypeReference Type { get; } = new TypeReference();
 
-        public List<IElement> Documentation { get; } = new List<IElement>();
+        public List<IVisual> Documentation { get; } = new List<IVisual>();
 
         private string DebuggerDisplay => $"{TextRun.RenderText(Type)} {Name} = {DefaultValue}";
 
